@@ -1,0 +1,69 @@
+# Sum of Squares (Python Program)
+
+# 📌Description
+This is a Python program that calculates the sum of squares of given integers, **excluding any negative numbers**.  
+The program reads input from `stdin`, processes multiple test cases, and outputs the computed sum.
+
+## 🔹 Input Format
+1. The first line contains an integer `N` (1 ≤ N ≤ 100), the number of test cases.
+2. Each test case consists of:
+   - An integer `X` (0 < X ≤ 100) representing the number of integers in the next line.
+   - `X` space-separated integers (each between -100 and 100).
+
+## 🔹 Output Format
+For each test case, print the sum of squares of **only the non-negative** integers.
+Code------------------------------------------------------------------------------
+def main():
+    import sys
+    data = sys.stdin.read().splitlines()
+    
+    n = int(data[0])  # Number of test cases
+    index = 1
+    results = []
+    
+    while n > 0:
+        x = int(data[index])  # Number of integers in this test case
+        numbers = list(map(int, data[index + 1].split()))  # Convert input line to list of integers
+        total = 0
+
+        for num in numbers:
+            if num >= 0:
+                total += num * num  # Sum of squares of non-negative numbers
+
+        results.append(str(total))
+        index += 2  # Move to the next test case
+        n -= 1
+
+    print("\n".join(results))  # Print all results without extra blank lines
+
+if __name__ == "__main__":
+    main()
+
+
+OUTPUT----------------------------------------------------------
+
+Input (stdin)
+
+2
+4
+3 -1 1 14
+5
+9 6 -53 32 16
+
+Processing Steps
+
+Test Case 1:
+X = 4
+Numbers: [3, -1, 1, 14]
+Negative hatao → [3, 1, 14]
+Squares lo aur sum karo: 3² + 1² + 14² = 9 + 1 + 196 = 206
+
+Test Case 2:
+
+X = 5
+Numbers: [9, 6, -53, 32, 16]
+Negative Replace → [9, 6, 32, 16]
+Squares :9² + 6² + 32² + 16² = 81 + 36 + 1024 + 256 = 1397
+Output (stdout)
+206
+1397
